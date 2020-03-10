@@ -1,7 +1,6 @@
 def init_board():
-    """Returns an empty 3-by-3 board (with zeros)."""
-    board = []
-    return board
+    board = [[0, 0, 0] , [0, 0, 0] , [0, 0, 0]]
+return board
 
 
 def get_move(board, player):
