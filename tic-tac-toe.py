@@ -24,13 +24,32 @@ def mark(board, player, row, col):
         pass
 
 def has_won(board, player):
-    """Returns True if player has won the game."""
-    return False
+    selected = player
+    if board[0] == [selected, selected, selected]:
+        return True
+    elif board[1] == [selected, selected, selected]:
+        return True
+    elif board[0] == [selected, selected, selected]:
+        return True
+    elif board[0][0] == selected and board[1][0] == selected and board[2][0] == selected:
+        return True
+    elif board[0][1] == selected and board[1][1] == selected and board[2][1] == selected:
+        return True 
+    elif board[0][2] == selected and board[1][2] == selected and board[2][2] == selected:
+        return True 
+    elif board[0][0] == selected and board[1][1] == selected and board[2][2] == selected:
+        return True
+    elif board[0][2] == selected and board[1][1] == selected and board[2][0] == selected:
+        return True
+    else:
+        return False
 
 
 def is_full(board):
-    """Returns True if board is full."""
-    return False
+    if 0 not in board:
+        return True
+    else:
+        return False
 
 
 def print_board(board):
