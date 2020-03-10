@@ -14,11 +14,14 @@ def get_ai_move(board, player):
     row, col = 0, 0
     return row, col
 
-
 def mark(board, player, row, col):
-    """Marks the element at row & col on the board for player."""
-    pass
-
+    if board[row][col] == 0:
+        if player == 'X':
+            board[row][col] = 'X'
+        elif player == 'O':
+            board[row][col] = 'O'
+    else:
+        pass
 
 def has_won(board, player):
     """Returns True if player has won the game."""
