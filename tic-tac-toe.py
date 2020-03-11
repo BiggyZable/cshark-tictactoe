@@ -1,5 +1,7 @@
+import os
+
 def init_board():
-    board = [[0, 0, 0] , [0, 0, 0] , [0, 0, 0]]
+    board = [[" ", " ", " "] , [" ", " ", " "] , [" ", " ", " "]]
     return board
 
 def get_move(board, player):
@@ -20,7 +22,7 @@ def get_move(board, player):
                 col = 1
             elif in_cord[1] == "3":
                 col = 2
-            if board[row][col] == 0:
+            if board[row][col] == " ":
                 print("in board")
                 wisely = True
             else:
@@ -35,7 +37,7 @@ def get_ai_move(board, player):
     return row, col
 
 def mark(board, player, row, col):
-    if board[row][col] == 0:
+    if board[row][col] == " ":
         if player == 'X':
             board[row][col] = 'X'
         elif player == 'O':
@@ -65,20 +67,19 @@ def has_won(board, player):
         return False
 
 def is_full(board):
-    if 0 not in board:
+    if " " not in board:
         return True
     else:
         return False
 
 
 def print_board(board):
-    print(    1   2   3 
-
-A   board[0][0] | board[0][1] | board[0][2] 
-   ---+---+---
-B   board[1][0] | board[1][1] | board[1][2] 
-   ---+---+---
-C   board[2][0] | board[2][1] | board[2][2] )
+    print("    1   2   3\n")
+    print("A   "+str(board[0][0])+" | "+str(board[0][1])+" | "+str(board[0][2])+"")
+    print("   ---+---+---")
+    print("B   "+str(board[1][0])+" | "+str(board[1][1])+" | "+str(board[1][2])+"")
+    print("   ---+---+---")
+    print("C   "+str(board[2][0])+" | "+str(board[2][1])+" | "+str(board[2][2])+"")
     
 
 
