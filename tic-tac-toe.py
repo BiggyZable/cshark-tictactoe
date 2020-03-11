@@ -1,13 +1,33 @@
 def init_board():
     board = [[0, 0, 0] , [0, 0, 0] , [0, 0, 0]]
-return board
-
+    return board
 
 def get_move(board, player):
-    """Returns the coordinates of a valid move for player on board."""
     row, col = 0, 0
+    wisely = False
+    while not wisely:
+        in_cord = input("You must choose, choose wisely! :")
+        if (in_cord[0].upper() in 'ABC') and (in_cord[1] in '123') and len(in_cord) == 2:
+            if in_cord[0] == "A":
+                row = 0
+            elif in_cord[0] == "B":
+                row = 1
+            elif in_cord[0] == "C":
+                row = 2
+            if in_cord[1] == "1":
+                col = 0
+            elif in_cord[1] == "2":
+                col = 1
+            elif in_cord[1] == "3":
+                col = 2
+            if board[row][col] == 0:
+                print("in board")
+                wisely = True
+            else:
+                print("place is occupied")
+        else:
+            print("Invalid input")
     return row, col
-
 
 def get_ai_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
@@ -44,7 +64,6 @@ def has_won(board, player):
     else:
         return False
 
-
 def is_full(board):
     if 0 not in board:
         return True
@@ -53,8 +72,7 @@ def is_full(board):
 
 
 def print_board(board):
-    """Prints a 3-by-3 board on the screen with borders."""
-    pass
+    
 
 
 def print_result(winner):
