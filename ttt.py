@@ -42,7 +42,8 @@ def get_move(board, player):
     return row, col
 
 def get_ai_move(board, player):
-    row , col = 0 , 0
+    row = random.randrange(0,3)
+    col = random.randrange(0,3)
     if player == 1:
         selected = 'O'
     elif player == 2:
@@ -205,8 +206,6 @@ def get_ai_move(board, player):
         row, col = (2, 1)
     if (board[2][1] == selected) and (board[2][2] == selected):#
         row, col = (2, 0)
-    if board[row][col] is " ":
-        return row, col
     if board[row][col] != ' ':
         got_random = False
         while not got_random:
@@ -216,7 +215,7 @@ def get_ai_move(board, player):
                 got_random = True
         return row, col
     elif board[row][col] is ' ':
-        return row, col
+            return row, col
 
 def mark(board, player, row, col):
     if board[row][col] == " ":
@@ -259,6 +258,7 @@ def is_full(board):
     else:
         return False
 
+
 def print_board(board):
     print("    1   2   3\n")
     print("A   "+str(board[0][0])+" | "+str(board[0][1])+" | "+str(board[0][2])+"")
@@ -283,7 +283,7 @@ def tictactoe_game(mode):
         print_board(board)
         print("Current turn: X")
         if mode == 'AI-AI':
-            time.sleep(1)
+            time.sleep(0.5)
             row, col = get_ai_move(board,player)
         elif mode == 'HUMAN-AI':
             row, col = get_move(board,player)
@@ -335,8 +335,9 @@ def tictactoe_game(mode):
 def main_menu():
     os.system("clear")
     print("Welcome to our Tic-Tac-Toe\n")
-    print("Enter a number to select the game mode:")
-    print("1.HUMAN VS HUMAN\n2.HUMAN VS AI\n3.AI VS AI")
+    print("You can exit any time by entering 'exit' instead of a coordinate!")
+    print("\nEnter a number to select the game mode:")
+    print("\n1.HUMAN VS HUMAN\n2.HUMAN VS AI\n3.AI VS AI")
     choice = input("Choose game mode:")
     if choice == '1':
         tictactoe_game('HUMAN-HUMAN')
