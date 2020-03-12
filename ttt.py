@@ -1,4 +1,6 @@
 import os
+import random
+import time
 
 def init_board():
     board = [[" ", " ", " "] , [" ", " ", " "] , [" ", " ", " "]]
@@ -25,10 +27,35 @@ def get_move(board, player):
             if board[row][col] == " ":
                 wisely = True
             else:
-                print("place is occupied")
+                print("That place is occupied")
+        elif in_cord.upper() == 'QUIT':
+            return "QUIT" , "QUIT"
         else:
             print("Invalid input")
     return row, col
+
+def get_ai_move(board, player):
+    row , col = 0 , 0
+    if player == 1:
+        selected = 'O'
+    elif player == 2:
+        selected = 'X'
+    if board[0][0] == selected and board[0][1] == selected:
+        row, col = 0, 2
+    if board[0][0] == selected:
+        row, col = 2, 2
+    #decisions
+    if board[row][col] != ' ':
+        got_random = False
+        while not got_random:
+            row = random.randrange(0,3)
+            col = random.randrange(0,3)
+            if board[row][col] is ' ':
+                got_random = True
+        return row, col
+    elif board[row][col] is ' ':
+        return row, col
+
 
 def mark(board, player, row, col):
     if board[row][col] == " ":
@@ -64,10 +91,10 @@ def has_won(board, player):
         return False
 
 def is_full(board):
-    if " " not in board:
-        return True
-    else:
+    if " " in board[0] or board[1] or board[2]:
         return False
+    else:
+        return True
 
 def print_board(board):
     print("    1   2   3\n")
@@ -83,7 +110,7 @@ def print_result(winner):
     else:
         print("Player " + str(winner)+ " has won!")
 
-def tictactoe_game(mode='HUMAN-HUMAN'):
+def tictactoe_game(mode):
     os.system("clear")  
     player = 1
     end = False
@@ -93,35 +120,47 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
         print_board(board)
         print("Current turn: X")
         if mode == 'HUMAN-HUMAN' or 'HUMAN-AI':
-            row , col = get_move(board, player)
+            row, col = get_move(board, player)
+            if row == 'QUIT':
+                print("\n\nGood bye!\n")
+                time.sleep(1)
+                quit()
+        if mode == 'AI-AI':
+            row, col = get_ai_move(board,player)
         mark(board, player, row, col)
         print_board(board)
         if has_won(board, player) == True:
             winner = player
             end = True
             continue
+        if is_full(board):
+            end = True
+            winner = 0
         player += 1
         os.system("clear")
         print_board(board)
         print("Current turn: O")
         if mode  == 'HUMAN-HUMAN':
-            row , col = get_move(board , player)
+            row, col = get_move(board , player)
+        elif mode == 'HUMAN-AI' or 'AI-AI':
+            row, col = get_ai_move(board , player)
         mark(board,player,row,col)
         print_board(board)
         if has_won(board, player) == True:
             winner = player
             end = True
             continue
+        if is_full(board):
+            end = True
+            winner = 0
         player -= 1
         os.system("clear")
-        if is_full(board) == True:
-            winner = 0
     os.system("clear")
     print_board(board)
     print_result(winner)
 
 def main_menu():
-    tictactoe_game('HUMAN-HUMAN')
+    tictactoe_game('HUMAN-AI')
 
 
 if __name__ == '__main__':
