@@ -10,8 +10,15 @@ def get_move(board, player):
     row, col = 0, 0
     wisely = False
     while not wisely:
+        in_cord = ''
         in_cord = input("You must choose, choose wisely! :")
-        if (in_cord[0].upper() in 'ABC') and (in_cord[1] in '123') and len(in_cord) == 2:
+        if in_cord == '':
+            print("No input")
+            continue
+        elif len(in_cord) < 2:
+            print("Invalid input")
+            continue
+        elif (in_cord[0].upper() in 'ABC') and (in_cord[1] in '123') and len(in_cord) == 2:
             if in_cord[0].upper() == "A":
                 row = 0
             elif in_cord[0].upper() == "B":
@@ -40,11 +47,166 @@ def get_ai_move(board, player):
         selected = 'O'
     elif player == 2:
         selected = 'X'
-    if board[0][0] == selected and board[0][1] == selected:
-        row, col = 0, 2
-    if board[0][0] == selected:
-        row, col = 2, 2
-    #decisions
+    if player == 1:
+        own_char = 'X'
+    elif player == 2:
+        own_char = 'O'
+    if (board[0][0] == own_char) and (board[0][1] == own_char):#
+        row, col = (0, 2)
+    if (board[0][0] == own_char) and (board[0][2] == own_char):#
+        row, col = (0, 1)
+    if (board[0][1] == own_char) and (board[0][2] == own_char):#
+        row, col = (0, 0)
+    if (board[1][0] == own_char) and (board[1][1] == own_char):#
+        row, col = (1, 2)
+    if (board[1][0] == own_char) and (board[1][2] == own_char):#
+        row, col = (1, 1)
+    if (board[1][1] == own_char) and (board[1][2] == own_char):#
+        row, col = (1, 0)
+    if (board[2][0] == own_char) and (board[2][1] == own_char):#
+        row, col = (2, 2)
+    if (board[2][0] == own_char) and (board[2][2] == own_char):#
+        row, col = (2, 1)
+    if (board[2][1] == own_char) and (board[2][2] == own_char):#
+        row, col = (2, 0)
+    if (board[0][0] == own_char) and (board[2][0] == own_char):#
+        row, col = (1, 0)
+    if (board[1][0] == own_char) and (board[0][0] == own_char):#
+        row, col = (2, 0)
+    if (board[2][0] == own_char) and (board[1][0] == own_char):#
+        row, col = (0, 0)
+    if (board[0][1] == own_char) and (board[2][1] == own_char):#
+        row, col = (1, 1)
+    if (board[1][1] == own_char) and (board[0][1] == own_char):#
+        row, col = (2, 1)
+    if (board[2][1] == own_char) and (board[1][1] == own_char):#
+        row, col = (0, 1)
+    if (board[0][2] == own_char) and (board[2][2] == own_char):#
+        row, col = (1, 2)
+    if (board[1][2] == own_char) and (board[0][2] == own_char):#
+        row, col = (2, 2)
+    if (board[2][2] == own_char) and (board[1][2] == own_char):#
+        row, col = (0, 2)
+    if (board[0][0] == own_char) and (board[1][1] == own_char):#
+        row, col = (2, 2)
+    if (board[0][0] == own_char) and (board[2][2] == own_char):#
+        row, col = (1, 1)
+    if (board[1][1] == own_char) and (board[2][2] == own_char):#
+        row, col = (0, 0)
+    if (board[2][0] == own_char) and (board[1][1] == own_char):#
+        row, col = (0, 2)
+    if (board[0][2] == own_char) and (board[1][1] == own_char):#
+        row, col = (2, 0)
+    if (board[2][0] == own_char) and (board[0][2] == own_char):#
+        row, col = (1, 1)
+    if (board[0][0] == own_char) and (board[1][2] == own_char):#
+        row, col = (1, 0)
+    if (board[0][0] == own_char) and (board[2][1] == own_char):#
+        row, col = (0, 1)
+    if (board[0][2] == own_char) and (board[1][0] == own_char):#
+        row, col = (1, 2)
+    if (board[0][2] == own_char) and (board[2][1] == own_char):#
+        row, col = (0, 1)
+    if (board[2][0] == own_char) and (board[0][1] == own_char):#
+        row, col = (2, 1)
+    if (board[2][0] == own_char) and (board[1][2] == own_char):#
+        row, col = (1, 0)
+    if (board[2][2] == own_char) and (board[0][1] == own_char):#
+        row, col = (2, 1)
+    if (board[2][2] == own_char) and (board[1][0] == own_char):#
+        row, col = (1, 2)
+    if (board[0][0] == selected):
+        row, col = (2, 2)
+    if (board[0][1] == selected):
+        row, col = (2, 2)
+    if (board[0][2] == selected):
+        row, col = (2, 0)
+    if (board[1][0] == selected):
+        row, col = (2, 2)
+    if (board[1][1] == selected):
+        row, col = (0, 0)
+    if (board[1][2] == selected):
+        row, col = (2, 2)
+    if (board[2][0] == selected):
+        row, col = (0, 2)
+    if (board[2][1] == selected):
+        row, col = (2, 2)
+    if (board[2][2] == selected):
+        row, col = (0, 0)
+    if (board[0][1] == selected) and (board[1][0] == selected):#
+        row, col = (0, 2)
+    if (board[0][1] == selected) and (board[1][2] == selected):#
+        row, col = (0, 2)
+    if (board[2][1] == selected) and (board[1][2] == selected):#
+        row, col = (0, 2)
+    if (board[2][1] == selected) and (board[1][0] == selected):#
+        row, col = (0, 2)
+    if (board[0][0] == selected) and (board[2][0] == selected):#
+        row, col = (1, 0)
+    if (board[1][0] == selected) and (board[0][0] == selected):#
+        row, col = (2, 0)
+    if (board[2][0] == selected) and (board[1][0] == selected):#
+        row, col = (0, 0)
+    if (board[0][1] == selected) and (board[2][1] == selected):#
+        row, col = (1, 1)
+    if (board[1][1] == selected) and (board[0][1] == selected):#
+        row, col = (2, 1)
+    if (board[2][1] == selected) and (board[1][1] == selected):#
+        row, col = (0, 1)
+    if (board[0][2] == selected) and (board[2][2] == selected):#
+        row, col = (1, 2)
+    if (board[1][2] == selected) and (board[0][2] == selected):#
+        row, col = (2, 2)
+    if (board[2][2] == selected) and (board[1][2] == selected):#
+        row, col = (0, 2)
+    if (board[0][0] == selected) and (board[1][1] == selected):#
+        row, col = (2, 2)
+    if (board[0][0] == selected) and (board[2][2] == selected):#
+        row, col = (1, 1)
+    if (board[1][1] == selected) and (board[2][2] == selected):#
+        row, col = (0, 0)
+    if (board[2][0] == selected) and (board[1][1] == selected):#
+        row, col = (0, 2)
+    if (board[0][2] == selected) and (board[1][1] == selected):#
+        row, col = (2, 0)
+    if (board[2][0] == selected) and (board[0][2] == selected):#
+        row, col = (1, 1)
+    if (board[0][0] == selected) and (board[1][2] == selected):#
+        row, col = (1, 0)
+    if (board[0][0] == selected) and (board[2][1] == selected):#
+        row, col = (0, 1)
+    if (board[0][2] == selected) and (board[1][0] == selected):#
+        row, col = (1, 2)
+    if (board[0][2] == selected) and (board[2][1] == selected):#
+        row, col = (0, 1)
+    if (board[2][0] == selected) and (board[0][1] == selected):#
+        row, col = (2, 1)
+    if (board[2][0] == selected) and (board[1][2] == selected):#
+        row, col = (1, 0)
+    if (board[2][2] == selected) and (board[0][1] == selected):#
+        row, col = (2, 1)
+    if (board[2][2] == selected) and (board[1][0] == selected):#
+        row, col = (1, 2)
+    if (board[0][0] == selected) and (board[0][1] == selected):#
+        row, col = (0, 2)
+    if (board[0][0] == selected) and (board[0][2] == selected):#
+        row, col = (0, 1)
+    if (board[0][1] == selected) and (board[0][2] == selected):#
+        row, col = (0, 0)
+    if (board[1][0] == selected) and (board[1][1] == selected):#
+        row, col = (1, 2)
+    if (board[1][0] == selected) and (board[1][2] == selected):#
+        row, col = (1, 1)
+    if (board[1][1] == selected) and (board[1][2] == selected):#
+        row, col = (1, 0)
+    if (board[2][0] == selected) and (board[2][1] == selected):#
+        row, col = (2, 2)
+    if (board[2][0] == selected) and (board[2][2] == selected):#
+        row, col = (2, 1)
+    if (board[2][1] == selected) and (board[2][2] == selected):#
+        row, col = (2, 0)
+    if board[row][col] is " ":
+        return row, col
     if board[row][col] != ' ':
         got_random = False
         while not got_random:
@@ -55,7 +217,6 @@ def get_ai_move(board, player):
         return row, col
     elif board[row][col] is ' ':
         return row, col
-
 
 def mark(board, player, row, col):
     if board[row][col] == " ":
@@ -91,10 +252,12 @@ def has_won(board, player):
         return False
 
 def is_full(board):
-    if " " in board[0] or board[1] or board[2]:
-        return False
+    if ' ' not in board[0]:
+        if ' ' not in board[1]:
+            if ' ' not in board[2]:
+                return True
     else:
-        return True
+        return False
 
 def print_board(board):
     print("    1   2   3\n")
@@ -106,7 +269,7 @@ def print_board(board):
 
 def print_result(winner):
     if winner == 0:
-        print("It's a tie!")
+        print("All right, we'll call it a draw!")
     else:
         print("Player " + str(winner)+ " has won!")
 
@@ -119,40 +282,50 @@ def tictactoe_game(mode):
     while not end:
         print_board(board)
         print("Current turn: X")
-        if mode == 'HUMAN-HUMAN' or 'HUMAN-AI':
+        if mode == 'AI-AI':
+            time.sleep(1)
+            row, col = get_ai_move(board,player)
+        elif mode == 'HUMAN-AI':
+            row, col = get_move(board,player)
+        elif mode == 'HUMAN-HUMAN':
             row, col = get_move(board, player)
             if row == 'QUIT':
-                print("\n\nGood bye!\n")
-                time.sleep(1)
+                print("\n\nSee you later!\n")
+                time.sleep(0.5)
                 quit()
-        if mode == 'AI-AI':
-            row, col = get_ai_move(board,player)
         mark(board, player, row, col)
+        time.sleep(0.5)
         print_board(board)
         if has_won(board, player) == True:
             winner = player
             end = True
             continue
-        if is_full(board):
-            end = True
+        if is_full(board) == True:
             winner = 0
+            end = True
+            continue
         player += 1
         os.system("clear")
         print_board(board)
         print("Current turn: O")
         if mode  == 'HUMAN-HUMAN':
             row, col = get_move(board , player)
-        elif mode == 'HUMAN-AI' or 'AI-AI':
+        elif mode == 'HUMAN-AI':
             row, col = get_ai_move(board , player)
+        elif mode == 'AI-AI':
+            time.sleep(0.5)
+            row, col = get_ai_move(board, player)
         mark(board,player,row,col)
+        time.sleep(0.5)
         print_board(board)
         if has_won(board, player) == True:
             winner = player
             end = True
             continue
-        if is_full(board):
-            end = True
+        if is_full(board) == True:
             winner = 0
+            end = True
+            continue
         player -= 1
         os.system("clear")
     os.system("clear")
@@ -160,7 +333,17 @@ def tictactoe_game(mode):
     print_result(winner)
 
 def main_menu():
-    tictactoe_game('HUMAN-AI')
+    os.system("clear")
+    print("Welcome to our Tic-Tac-Toe\n")
+    print("Enter a number to select the game mode:")
+    print("1.HUMAN VS HUMAN\n2.HUMAN VS AI\n3.AI VS AI")
+    choice = input("Choose game mode:")
+    if choice == '1':
+        tictactoe_game('HUMAN-HUMAN')
+    elif choice == '2':
+        tictactoe_game('HUMAN-AI')
+    elif choice == '3':
+        tictactoe_game('AI-AI')
 
 
 if __name__ == '__main__':
